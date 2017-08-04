@@ -1,8 +1,10 @@
 function merge(leftArr, rightArr) {
     if (leftArr && rightArr) {
-
+        sortedArr = [];
         for (var i = 0; i < leftArr.length; i++) {
-            for (var j = 0; j < rightArr.length; j++)
+            for (var j = 0; j < rightArr.length; j++) {
+
+            }
         }
     }
 }
