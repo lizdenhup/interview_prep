@@ -13,23 +13,25 @@ const parentheses = {
     '(': ')'
 }
 
-
-function parenthesisChecker(string) {
-    if (!string || string.length % 2 !== 0) {
+var isValid = function(s) {
+    if (!s.length || s.length % 2 !== 0) {
         console.log('Either there is no string or the string length is not a multiple of two so it cannot be valid')
         return false; 
     } else {
-        let charArr = [...string] // turns string into array of char strings 
+        let charArr = [...s] // turns string into array of char strings 
         for (var i = 0; j = charArr.length; i < j) {
-            if (charArr[i] === Object.keys(parentheses)) {
+            if (parentheses.hasOwnProperty(charArr[i])) {
+                //check to see if char at index i is a key, if so keep going 
                 continue 
-            } else if (charArr[i] === Object.values(parentheses)) {
+            } else {
                 // check if the preceding char is a key for the value
+                if (parentheses.hasOwnProperty(charArr[i - 1]) && parentheses[charArr[i -1]] === charArr[i]) {
+                    charArr = charArr.splice(0, i - 1).concat(charArr.splice(i + 1)) 
+                    return true 
+                }
             }
         }
     }
-// pseudocode: iterate through the string as if it is an array of characters
-// stop traversing the string when you get to the first char which is a closing parentheses
-// if the char prior to the closing parenthesis is a key for that value, pop it off the array
-// proceed to the following char and repeat the above 
-}
+};
+
+//currently passing 2/73 test cases on leetcode before timing out
